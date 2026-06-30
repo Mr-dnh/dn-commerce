@@ -35,7 +35,7 @@ export function Dots({ pictures, activeIndex, onSelect }: DotsProps) {
     <div className="absolute bottom-4 right-4 flex items-center gap-1 rounded-full bg-slate-950/45 px-2 py-1">
       {pictures.map((picture, index) => (
         <button
-          key={`${picture.src}-${index}`}
+          key={`${picture.image_url}-${index}`}
           className={`size-1.5 rounded-full transition ${
             index === activeIndex ? "bg-white" : "bg-white/40 hover:bg-white/70"
           }`}

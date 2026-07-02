@@ -10,7 +10,11 @@ export const fetchProducts = async (): Promise<CarouselPicture[]> => {
   }
 
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    // ✅ توی Vercel خودش آدرس رو میده
+    const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL 
+      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+      : process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    
     const response = await axios.get(`${baseUrl}/data.json`);
     cachedProducts = response.data;
     return cachedProducts;

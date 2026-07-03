@@ -1,6 +1,18 @@
 @import "tailwindcss";
 
-* {box-sizing: border-box;}
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-950;
+  }
+
+  .dark body {
+    @apply bg-slate-950 text-slate-50;
+  }
+}
+
+* {box-sizing: border-box; scroll-margin-top: 80px;}
 
 html {scroll-behavior: smooth;}
 
@@ -10,3 +22,7 @@ body {
 }
 
 a {text-decoration: none;}
+
+button {
+  cursor: pointer !important;
+}

@@ -1,7 +1,7 @@
 import { getProducts } from "@/api/axiosConfig";
-import CardContent from "@/components/common/card";
-import Pagination from "@/components/features/pagination";
-import { CarouselPicture } from "@/lib/types";
+import CardContent from "@/components/shared/card";
+import Pagination from "@/components/shared/pagination";
+import { product_type } from "@/lib/types";
 
 const ITEMS_PER_PAGE = 20;
 
@@ -23,7 +23,7 @@ export default async function ProductsPage({
   const totalPages = Math.ceil(allProducts.length / ITEMS_PER_PAGE);
 
   return (
-    <main className="bg-slate-500 min-h-screen py-16">
+    <main className="bg-slate-500 min-h-screen py-16 dark:bg-slate-800 dark:text-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-3xl font-bold text-white">All Products</h1>
@@ -33,7 +33,7 @@ export default async function ProductsPage({
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {currentProducts.map((product: CarouselPicture) => (
+          {currentProducts.map((product: product_type) => (
             <CardContent key={product.product_id} product={product} />
           ))}
         </div>

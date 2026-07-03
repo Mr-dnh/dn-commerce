@@ -3,8 +3,9 @@ import { getProductById, getProducts } from "@/api/axiosConfig";
 import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import AddToCartButton from "@/components/features/addToCart";
 
-const Comments = dynamic(() => import("@/components/common/comments"), {
+const Comments = dynamic(() => import("@/components/features/comments"), {
   loading: () => (
     <div className="animate-pulse p-4 text-center text-slate-500">
       Loading comments...
@@ -34,10 +35,10 @@ export default async function ProductPage({ params }: Props) {
 
   return (
     <>
-      <main className="min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top_left,#cbd5e1,transparent_34%),linear-gradient(180deg,#e2e8f0_0%,#cbd5e1_55%,#e2e8f0_100%)] px-4 py-6 text-slate-950 sm:px-6 lg:px-8">
+      <main className="min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top_left,#cbd5e1,transparent_34%),linear-gradient(180deg,#e2e8f0_0%,#cbd5e1_55%,#e2e8f0_100%)] px-4 py-6 text-slate-950 sm:px-6 lg:px-8 dark:bg-[radial-gradient(circle_at_top_left,#334155,transparent_34%),linear-gradient(180deg,#0f172a_0%,#1e293b_55%,#0f172a_100%)] dark:text-white">
         <section className="mx-auto flex w-full max-w-6xl flex-col gap-6 lg:grid lg:grid-cols-[minmax(0,1.05fr)_minmax(380px,0.95fr)] lg:items-stretch lg:gap-10">
-          <div className="rounded-4xl border border-white/70 bg-white/70 p-3 shadow-2xl shadow-slate-300/50 backdrop-blur sm:p-4">
-            <div className="relative aspect-4/5 overflow-hidden rounded-[1.55rem] bg-slate-100 sm:aspect-square">
+          <div className="rounded-4xl border border-white/70 bg-white/70 p-3 shadow-2xl shadow-slate-300/50 backdrop-blur sm:p-4 dark:border-slate-700/70 dark:bg-slate-800/70 dark:shadow-slate-900/50">
+            <div className="relative aspect-4/5 overflow-hidden rounded-[1.55rem] bg-slate-100 sm:aspect-square dark:bg-slate-700">
               <Image
                 src={product.image_url}
                 alt={product.title}
@@ -48,12 +49,12 @@ export default async function ProductPage({ params }: Props) {
               />
               <div className="absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-slate-950/55 to-transparent" />
               {product.brand && (
-                <span className="absolute left-4 top-4 rounded-full bg-white/90 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-slate-900 shadow-lg shadow-slate-900/10 backdrop-blur">
+                <span className="absolute left-4 top-4 rounded-full bg-white/90 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-slate-900 shadow-lg shadow-slate-900/10 backdrop-blur dark:bg-slate-900/90 dark:text-white">
                   {product.brand}
                 </span>
               )}
-              <div className="absolute bottom-4 left-4 right-4 rounded-2xl border border-white/30 bg-white/20 p-4 text-white shadow-xl backdrop-blur-md">
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-100">
+              <div className="absolute bottom-4 left-4 right-4 rounded-2xl border border-white/30 bg-white/20 p-4 text-white shadow-xl backdrop-blur-md dark:border-white/10 dark:bg-slate-900/50">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-100 dark:text-sky-300">
                   Hand-finished product
                 </p>
                 <p className="mt-1 text-sm text-white/90">Built for comfort.</p>
@@ -61,24 +62,24 @@ export default async function ProductPage({ params }: Props) {
             </div>
           </div>
 
-          <div className="rounded-4xl bg-white/85 p-5 shadow-2xl shadow-slate-300/40 backdrop-blur sm:p-8">
+          <div className="rounded-4xl bg-white/85 p-5 shadow-2xl shadow-slate-300/40 backdrop-blur sm:p-8 dark:bg-slate-900/85 dark:shadow-slate-900/50">
             <div className="flex flex-col gap-4">
-              <div className="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-sky-700">
+              <div className="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-sky-700 dark:text-sky-400">
                 <span>Signature collection</span>
                 <span className="h-2 w-2 rounded-full bg-sky-400" />
                 <span>In stock</span>
               </div>
 
               <div className="space-y-3">
-                <h1 className="text-4xl font-black tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
+                <h1 className="text-4xl font-black tracking-tight text-slate-950 sm:text-5xl lg:text-6xl dark:text-white">
                   {product.brand}
                 </h1>
-                <p className="text-base leading-7 text-slate-600 sm:text-lg">
+                <p className="text-base leading-7 text-slate-600 sm:text-lg dark:text-slate-300">
                   {product.title}
                 </p>
               </div>
 
-              <div className="grid justify-items-center grid-cols-2 gap-3 rounded-3xl bg-slate-950 p-1 text-white">
+              <div className="grid justify-items-center grid-cols-2 gap-3 rounded-3xl bg-slate-950 p-1 text-white dark:bg-slate-800">
                 <div className=" flex flex-row gap-2 items-center rounded-2xl bg-white/10 p-2">
                   <p className="text-xs text-slate-300">Price</p>
                   <p className="text-2xl font-black">${product.price}</p>
@@ -89,30 +90,30 @@ export default async function ProductPage({ params }: Props) {
                 </div>
               </div>
 
-              <div className="space-y-3 rounded-3xl border border-slate-200 bg-slate-50 p-4">
+              <div className="space-y-3 rounded-3xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800">
                 <div className="flex items-start gap-3">
-                  <span className="mt-1 inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-sky-100 text-sm font-black text-sky-700">
+                  <span className="mt-1 inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-sky-100 text-sm font-black text-sky-700 dark:bg-sky-900 dark:text-sky-300">
                     1
                   </span>
                   <div>
-                    <h2 className="font-bold text-slate-950">
+                    <h2 className="font-bold text-slate-950 dark:text-white">
                       Balanced by hand
                     </h2>
-                    <p className="text-sm leading-6 text-slate-600">
+                    <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">
                       Each product is chosen for a smooth feel, sculptural
                       profile, and display-ready presence.
                     </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <span className="mt-1 inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-sky-100 text-sm font-black text-sky-700">
+                  <span className="mt-1 inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-sky-100 text-sm font-black text-sky-700 dark:bg-sky-900 dark:text-sky-300">
                     2
                   </span>
                   <div>
-                    <h2 className="font-bold text-slate-950">
+                    <h2 className="font-bold text-slate-950 dark:text-white">
                       Gift-ready packaging
                     </h2>
-                    <p className="text-sm leading-6 text-slate-600">
+                    <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">
                       Ships protected with care instructions, making it easy to
                       give or keep for your own collection.
                     </p>
@@ -121,15 +122,13 @@ export default async function ProductPage({ params }: Props) {
               </div>
 
               <div className="grid gap-3 sm:grid-cols-[1fr_auto]">
-                <button className="rounded-2xl bg-slate-950 px-6 py-4 text-base font-black text-white shadow-xl shadow-slate-900/20 transition hover:-translate-y-0.5 hover:bg-sky-700 focus:outline-none active:ring-4 active:ring-sky-200">
-                  Add to Cart
-                </button>
-                <button className="rounded-2xl border border-slate-300 bg-white px-6 py-4 text-base font-black text-slate-950 transition hover:-translate-y-0.5 hover:border-sky-300 hover:text-sky-700 focus:outline-none active:ring-4 active:ring-sky-100">
+                <AddToCartButton product={product} />
+                <button className="rounded-2xl border border-slate-300 bg-white px-6 py-4 text-base font-black text-slate-950 transition hover:-translate-y-0.5 hover:border-sky-300 hover:text-sky-700 focus:outline-none active:ring-4 active:ring-sky-100 dark:border-slate-600 dark:bg-slate-800 dark:text-white dark:hover:border-sky-400 dark:hover:text-sky-400 dark:active:ring-sky-900">
                   Save for Later
                 </button>
               </div>
 
-              <p className="text-center text-sm font-medium text-slate-500 sm:text-left">
+              <p className="text-center text-sm font-medium text-slate-500 sm:text-left dark:text-slate-400">
                 Secure checkout • Made in small batches • Ships in 2-4 business
                 days
               </p>
@@ -141,10 +140,10 @@ export default async function ProductPage({ params }: Props) {
           <section className="mx-auto mt-10 max-w-6xl">
             <div className="mb-4 flex items-end justify-between gap-4">
               <div>
-                <p className="text-sm font-bold uppercase tracking-[0.2em] text-sky-700">
+                <p className="text-sm font-bold uppercase tracking-[0.2em] text-sky-700 dark:text-sky-400">
                   You may also like
                 </p>
-                <h2 className="mt-1 text-2xl font-black text-slate-950">
+                <h2 className="mt-1 text-2xl font-black text-slate-950 dark:text-white">
                   More {product.brand} designs
                 </h2>
               </div>
@@ -153,9 +152,9 @@ export default async function ProductPage({ params }: Props) {
               {suggestedProducts.map((item) => (
                 <article
                   key={item.product_id}
-                  className="overflow-hidden rounded-3xl border border-white/80 bg-white/80 shadow-lg shadow-slate-300/30">
-                  <Link href={`/product/${item.product_id}`}>
-                    <div className="relative aspect-4/3 bg-slate-100">
+                  className="overflow-hidden rounded-3xl border border-white/80 bg-white/80 shadow-lg shadow-slate-300/30 dark:border-slate-700/80 dark:bg-slate-800/80 dark:shadow-slate-900/30">
+                  <Link href={`/products/${item.product_id}`}>
+                    <div className="relative aspect-4/3 bg-slate-100 dark:bg-slate-700">
                       <Image
                         src={item.image_url}
                         alt={item.title}
@@ -166,8 +165,12 @@ export default async function ProductPage({ params }: Props) {
                     </div>
                   </Link>
                   <div className="p-4">
-                    <h3 className="font-black text-slate-950">{item.title}</h3>
-                    <p className="mt-1 text-sm text-slate-600">${item.price}</p>
+                    <h3 className="font-black text-slate-950 dark:text-white">
+                      {item.title}
+                    </h3>
+                    <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
+                      ${item.price}
+                    </p>
                   </div>
                 </article>
               ))}

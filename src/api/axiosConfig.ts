@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { CarouselPicture } from '@/lib/types';
+import { product_type } from '@/lib/types';
 
 // دیتا رو از public میگیریم
-let cachedProducts: CarouselPicture[] = [];
+let cachedProducts: product_type[] = [];
 
-export const fetchProducts = async (): Promise<CarouselPicture[]> => {
+export const fetchProducts = async (): Promise<product_type[]> => {
   if (cachedProducts.length > 0) {
     return cachedProducts;
   }

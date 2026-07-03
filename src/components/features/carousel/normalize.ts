@@ -1,8 +1,8 @@
-import { CarouselPicture } from "@/lib/types";
+import { product_type } from "@/lib/types";
 
 export function normalizePictures(
-  carousel: CarouselPicture | CarouselPicture[]
-): CarouselPicture[] {
+  carousel: product_type | product_type[]
+): product_type[] {
   if (Array.isArray(carousel)) {
     return carousel.filter((picture) => Boolean(picture.image_url));
   }
@@ -15,5 +15,5 @@ export function normalizePictures(
       }
       return value;
     })
-    .filter((value): value is CarouselPicture => Boolean(value?.image_url));
+    .filter((value): value is product_type => Boolean(value?.image_url));
 }

@@ -1,4 +1,4 @@
-import { CarouselPicture } from "@/lib/types";
+import { product_type } from "@/lib/types";
 
 type NavigationButtonsProps = {
   onPrev: () => void;
@@ -6,7 +6,7 @@ type NavigationButtonsProps = {
 };
 
 type DotsProps = {
-  pictures: CarouselPicture[];
+  pictures: product_type[];
   activeIndex: number;
   onSelect: (index: number) => void;
 };

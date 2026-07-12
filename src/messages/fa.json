@@ -1,8 +1,112 @@
 {
-    "Header": {
-        "home": "خانه",
-        "products": "محصولات",
-        "cart": "سبد خرید",
-        "search": "جستجو"
+  "Header": {
+    "home": "خانه",
+    "products": "محصولات",
+    "collections": "کالکشن‌ها",
+    "deals": "تخفیف‌ها",
+    "contact": "تماس",
+    "search": "جستجو",
+    "searchProducts": "جستجوی محصولات",
+    "openCart": "باز کردن سبد خرید",
+    "openAccount": "باز کردن حساب کاربری",
+    "menu": "منو",
+    "language": "زبان"
+  },
+  "Footer": {
+    "description": "یک تجربه فروشگاهی حرفه‌ای برای کشف محصولات منتخب، تخفیف‌های فصلی و نیازهای روزمره.",
+    "rights": "© ۲۰۲۶ آیدین کامرس. همه حقوق محفوظ است.",
+    "sections": {
+      "shop": "فروشگاه",
+      "support": "پشتیبانی",
+      "company": "شرکت"
+    },
+    "links": {
+      "newArrivals": "جدیدترین‌ها",
+      "bestSellers": "پرفروش‌ها",
+      "giftCards": "کارت هدیه",
+      "contact": "تماس",
+      "shipping": "ارسال",
+      "returns": "مرجوعی",
+      "about": "درباره ما",
+      "careers": "فرصت‌های شغلی",
+      "privacy": "حریم خصوصی"
     }
+  },
+  "Home": {
+    "eyebrow": "فروشگاه آیدین",
+    "title": "کفش‌های منتخب با قیمت‌های شفاف.",
+    "description": "کفش‌های منتخب، قیمت‌گذاری شفاف و محصولات روزمره‌ای را کشف کنید که برای استایل، راحتی و اعتمادبه‌نفس انتخاب شده‌اند.",
+    "shopProducts": "خرید محصولات",
+    "readComments": "خواندن نظرها",
+    "logo": "لوگوی شما",
+    "featuredEyebrow": "کالکشن منتخب",
+    "featuredTitle": "جدید و محبوب",
+    "viewAll": "مشاهده همه ←",
+    "morePrompt": "محصولات بیشتری می‌خواهید؟"
+  },
+  "Products": {
+    "title": "همه محصولات",
+    "pageOf": "صفحه {currentPage} از {totalPages}",
+    "previous": "قبلی",
+    "next": "بعدی",
+    "of": "از"
+  },
+  "Product": {
+    "notFound": "محصول پیدا نشد",
+    "loadingComments": "در حال بارگذاری نظرها...",
+    "handFinished": "محصول دست‌چین‌شده",
+    "builtForComfort": "ساخته‌شده برای راحتی.",
+    "signatureCollection": "کالکشن ویژه",
+    "inStock": "موجود",
+    "price": "قیمت",
+    "shipping": "ارسال",
+    "free": "رایگان",
+    "balancedTitle": "انتخاب‌شده با دقت",
+    "balancedText": "هر محصول برای حس خوب، ظاهر چشمگیر و کیفیت مناسب انتخاب شده است.",
+    "packagingTitle": "بسته‌بندی مناسب هدیه",
+    "packagingText": "با بسته‌بندی محافظ ارسال می‌شود تا هدیه دادن یا نگهداری آن ساده باشد.",
+    "saveForLater": "ذخیره برای بعد",
+    "secureCheckout": "پرداخت امن • تولید محدود • ارسال طی ۲ تا ۴ روز کاری",
+    "youMayAlsoLike": "شاید بپسندید",
+    "moreDesigns": "محصولات بیشتر از {brand}",
+    "addToCart": "افزودن به سبد"
+  },
+  "Card": {
+    "fallbackDescription": "محصولی شیک و باکیفیت از کالکشن ASOS.",
+    "more": "بیشتر..."
+  },
+  "Cart": {
+    "title": "سبد خرید شما",
+    "empty": "سبد خرید شما خالی است",
+    "startShopping": "شروع خرید",
+    "removeItem": "حذف محصول",
+    "itemsToShip": "{count} محصول برای ارسال",
+    "total": "مجموع: {price}",
+    "clear": "پاک کردن سبد",
+    "checkout": "پرداخت ←"
+  },
+  "Search": {
+    "emptyPrompt": "حالا عبارت مورد نظر را برای جستجو وارد کنید!",
+    "found": "{count} محصول پیدا شد",
+    "none": "برای «{query}» محصولی پیدا نشد؛ املای آن را بررسی کنید؟",
+    "allProducts": "همه محصولات"
+  },
+  "Comments": {
+    "title": "بخش نظرها",
+    "description": "نظر خود را درباره کالکشن بنویسید یا بگویید چه محصولی را در سری بعدی دوست دارید.",
+    "name": "نام",
+    "namePlaceholder": "نام شما",
+    "comment": "نظر",
+    "commentPlaceholder": "نظر شما",
+    "post": "ارسال نظر",
+    "verified": "مشتری تاییدشده"
+  },
+  "Common": {
+    "toggleTheme": "تغییر حالت رنگ",
+    "backHome": "بازگشت به خانه",
+    "pageNotFound": "صفحه پیدا نشد",
+    "notFoundDescription": "متأسفیم، صفحه مورد نظر شما پیدا نشد.",
+    "errorTitle": "مشکلی پیش آمد",
+    "tryAgain": "تلاش دوباره"
+  }
 }

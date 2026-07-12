@@ -1,15 +1,14 @@
 "use client";
 
 import { useThemeStore } from "@/store/themeStore";
-import { useEffect, useState } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 
 export default function ThemeToggle() {
   const { theme, toggleTheme } = useThemeStore();
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(() => () => {}, () => true, () => false);
 
   // hydration mismatch
   useEffect(() => {
-    setMounted(true);
     document.documentElement.className = theme;
   }, [theme]);
 

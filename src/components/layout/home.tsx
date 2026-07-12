@@ -2,7 +2,10 @@ import { getProducts } from "@/api/axiosConfig";
 import CardContent from "@/components/shared/card";
 import Link from "next/link";
 
-export default async function Home() {
+import type { Locale } from "@/lib/i18n/config";
+import type { Messages } from "@/lib/i18n/messages";
+
+export default async function Home({ locale, messages, cardMessages }: { locale: Locale; messages: Messages["Home"]; cardMessages: Messages["Card"] }) {
   // دیتا رو از سرور میگیریم
   const allProducts = await getProducts();
   const featuredProducts = allProducts.slice(0, 8);
@@ -14,33 +17,30 @@ export default async function Home() {
         <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1fr_0.9fr]">
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.3em] text-slate-300 dark:text-slate-400">
-              Aidin Shop
+              {messages.eyebrow}
             </p>
             <h1 className="mt-4 max-w-3xl text-5xl font-black tracking-tight sm:text-7xl">
-              Handpicked Shoes with prices made clear.
+              {messages.title}
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200 dark:text-slate-300">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Laudantium iste dolores ut, totam non, excepturi amet consequuntur
-              accusantium magnam alias magni quam at. Nemo esse quas quod
-              quibusdam reprehenderit commodi!.
+              {messages.description}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href="#products"
                 className="rounded-full bg-white px-6 py-3 text-sm font-bold text-slate-950 transition hover:bg-slate-200 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-700">
-                Shop products
+                {messages.shopProducts}
               </a>
               <a
                 href="#comments"
                 className="rounded-full border border-white/30 px-6 py-3 text-sm font-bold text-white transition hover:bg-white/10 dark:border-white/20 dark:hover:bg-white/5">
-                Read comments
+                {messages.readComments}
               </a>
             </div>
           </div>
 
           <div className=" hidden sm:block text-center text-8xl dark:text-white">
-            Your Logo
+            {messages.logo}
           </div>
         </div>
       </section>
@@ -51,32 +51,32 @@ export default async function Home() {
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.3em] text-slate-200 dark:text-slate-400">
-              Featured Collection
+              {messages.featuredEyebrow}
             </p>
             <h2 className="mt-2 text-4xl font-black tracking-tight text-white dark:text-white">
-              New & Trending
+              {messages.featuredTitle}
             </h2>
           </div>
           <Link
-            href="/products"
+            href={`/${locale}/products`}
             className="text-sm font-bold text-white hover:bg-slate-600 transition rounded-full px-3 py-2 dark:hover:bg-slate-700">
-            View all →
+            {messages.viewAll}
           </Link>
         </div>
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {featuredProducts.map((product) => (
-            <CardContent key={product.product_id} product={product} />
+            <CardContent key={product.product_id} product={product} locale={locale} messages={cardMessages} />
           ))}
         </div>
         <div className="mt-7 grid sm:grid-cols-[2fr_1fr] items-center justify-items-center">
           <span className="hidden sm:block text-sm dark:text-slate-300">
-            Wanna see more?
+            {messages.morePrompt}
           </span>
           <Link
-            href="/products"
+            href={`/${locale}/products`}
             className="font-bold text-lg text-white hover:bg-slate-600 transition rounded-full px-3 py-2 dark:hover:bg-slate-700">
-            View all →
+            {messages.viewAll}
           </Link>
         </div>
       </section>

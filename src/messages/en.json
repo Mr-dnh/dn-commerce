@@ -1,8 +1,112 @@
 {
-    "Header": {
-        "home": "Home",
-        "products": "Products",
-        "cart": "Cart",
-        "search": "Search"
+  "Header": {
+    "home": "Home",
+    "products": "Products",
+    "collections": "Collections",
+    "deals": "Deals",
+    "contact": "Contact",
+    "search": "Search",
+    "searchProducts": "Search products",
+    "openCart": "Open cart",
+    "openAccount": "Open account",
+    "menu": "Menu",
+    "language": "Language"
+  },
+  "Footer": {
+    "description": "A polished ecommerce experience for discovering curated products, seasonal deals, and everyday essentials.",
+    "rights": "© 2026 Aidin Commerce. All rights reserved.",
+    "sections": {
+      "shop": "Shop",
+      "support": "Support",
+      "company": "Company"
+    },
+    "links": {
+      "newArrivals": "New arrivals",
+      "bestSellers": "Best sellers",
+      "giftCards": "Gift cards",
+      "contact": "Contact",
+      "shipping": "Shipping",
+      "returns": "Returns",
+      "about": "About",
+      "careers": "Careers",
+      "privacy": "Privacy"
     }
+  },
+  "Home": {
+    "eyebrow": "Aidin Shop",
+    "title": "Handpicked Shoes with prices made clear.",
+    "description": "Discover curated shoes, transparent pricing, and everyday essentials selected for style, comfort, and confidence.",
+    "shopProducts": "Shop products",
+    "readComments": "Read comments",
+    "logo": "Your Logo",
+    "featuredEyebrow": "Featured Collection",
+    "featuredTitle": "New & Trending",
+    "viewAll": "View all →",
+    "morePrompt": "Wanna see more?"
+  },
+  "Products": {
+    "title": "All Products",
+    "pageOf": "page {currentPage} of {totalPages}",
+    "previous": "Previous",
+    "next": "Next",
+    "of": "of"
+  },
+  "Product": {
+    "notFound": "Product Not Found",
+    "loadingComments": "Loading comments...",
+    "handFinished": "Hand-finished product",
+    "builtForComfort": "Built for comfort.",
+    "signatureCollection": "Signature collection",
+    "inStock": "In stock",
+    "price": "Price",
+    "shipping": "Shipping",
+    "free": "Free",
+    "balancedTitle": "Balanced by hand",
+    "balancedText": "Each product is chosen for a smooth feel, sculptural profile, and display-ready presence.",
+    "packagingTitle": "Gift-ready packaging",
+    "packagingText": "Ships protected with care instructions, making it easy to give or keep for your own collection.",
+    "saveForLater": "Save for Later",
+    "secureCheckout": "Secure checkout • Made in small batches • Ships in 2-4 business days",
+    "youMayAlsoLike": "You may also like",
+    "moreDesigns": "More {brand} designs",
+    "addToCart": "Add to Cart"
+  },
+  "Card": {
+    "fallbackDescription": "Stylish and high-quality product from ASOS collection.",
+    "more": "More..."
+  },
+  "Cart": {
+    "title": "Your Cart",
+    "empty": "Your cart is empty",
+    "startShopping": "Start Shopping",
+    "removeItem": "Remove item",
+    "itemsToShip": "{count} item{plural} to ship",
+    "total": "Total: {price}",
+    "clear": "Clear Cart",
+    "checkout": "Checkout →"
+  },
+  "Search": {
+    "emptyPrompt": "Genius! ok now enter your search term!",
+    "found": "{count} products found",
+    "none": "no products found for \"{query}\", spellcheck?",
+    "allProducts": "All Products"
+  },
+  "Comments": {
+    "title": "Comment section",
+    "description": "Share your thoughts about the collection, ask about a custom finish, or tell us which product belongs in the next drop.",
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "comment": "Comment",
+    "commentPlaceholder": "Penny for Your Thoughts",
+    "post": "Post comment",
+    "verified": "Verified customer"
+  },
+  "Common": {
+    "toggleTheme": "Toggle theme",
+    "backHome": "Back Home",
+    "pageNotFound": "Page Not Found",
+    "notFoundDescription": "Sorry, we couldn't find the page you're looking for.",
+    "errorTitle": "Something went wrong",
+    "tryAgain": "Try Again"
+  }
 }

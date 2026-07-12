@@ -2,24 +2,19 @@ import { notFound } from "next/navigation";
 import { getProductById, getProducts } from "@/api/axiosConfig";
 import Image from "next/image";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import AddToCartButton from "@/components/features/addToCart";
 import type { Metadata } from "next";
+import { getMessages } from "@/lib/i18n/messages";
+import { isLocale } from "@/lib/i18n/config";
+import Comments from "@/components/shared/comments";
 
 type Props = {
-  params: Promise<{ id: string }>;
+  params: Promise<{ locale: string; id: string }>;
 };
 
-const Comments = dynamic(() => import("@/components/shared/comments"), {
-  loading: () => (
-    <div className="animate-pulse p-4 text-center text-slate-500">
-      Loading comments...
-    </div>
-  ),
-});
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { id } = await params;
+  const { locale, id } = await params;
+  if (!isLocale(locale)) notFound();
 
   const product = await getProductById(id);
 
@@ -50,7 +45,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ProductPage({ params }: Props) {
-  const { id } = await params;
+  const { locale, id } = await params;
+  if (!isLocale(locale)) notFound();
+  const messages = await getMessages(locale);
   const product = await getProductById(id);
   const allProducts = await getProducts();
 
@@ -87,9 +84,9 @@ export default async function ProductPage({ params }: Props) {
               )}
               <div className="absolute bottom-4 left-4 right-4 rounded-2xl border border-white/30 bg-white/20 p-4 text-white shadow-xl backdrop-blur-md dark:border-white/10 dark:bg-slate-900/50">
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-100 dark:text-sky-300">
-                  Hand-finished product
+                  {messages.Product.handFinished}
                 </p>
-                <p className="mt-1 text-sm text-white/90">Built for comfort.</p>
+                <p className="mt-1 text-sm text-white/90">{messages.Product.builtForComfort}</p>
               </div>
             </div>
           </div>
@@ -97,9 +94,9 @@ export default async function ProductPage({ params }: Props) {
           <div className="rounded-4xl bg-white/85 p-5 shadow-2xl shadow-slate-300/40 backdrop-blur sm:p-8 dark:bg-slate-900/85 dark:shadow-slate-900/50">
             <div className="flex flex-col gap-4">
               <div className="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-sky-700 dark:text-sky-400">
-                <span>Signature collection</span>
+                <span>{messages.Product.signatureCollection}</span>
                 <span className="h-2 w-2 rounded-full bg-sky-400" />
-                <span>In stock</span>
+                <span>{messages.Product.inStock}</span>
               </div>
 
               <div className="space-y-3">
@@ -113,12 +110,12 @@ export default async function ProductPage({ params }: Props) {
 
               <div className="grid justify-items-center grid-cols-2 gap-3 rounded-3xl bg-slate-950 p-1 text-white dark:bg-slate-800">
                 <div className=" flex flex-row gap-2 items-center rounded-2xl bg-white/10 p-2">
-                  <p className="text-xs text-slate-300">Price</p>
+                  <p className="text-xs text-slate-300">{messages.Product.price}</p>
                   <p className="text-2xl font-black">${product.price}</p>
                 </div>
                 <div className=" flex flex-row gap-2 items-center rounded-2xl bg-white/10 p-2">
-                  <p className="text-xs text-slate-300">Shipping</p>
-                  <p className="font-bold">Free</p>
+                  <p className="text-xs text-slate-300">{messages.Product.shipping}</p>
+                  <p className="font-bold">{messages.Product.free}</p>
                 </div>
               </div>
 
@@ -129,11 +126,10 @@ export default async function ProductPage({ params }: Props) {
                   </span>
                   <div>
                     <h2 className="font-bold text-slate-950 dark:text-white">
-                      Balanced by hand
+                      {messages.Product.balancedTitle}
                     </h2>
                     <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">
-                      Each product is chosen for a smooth feel, sculptural
-                      profile, and display-ready presence.
+                      {messages.Product.balancedText}
                     </p>
                   </div>
                 </div>
@@ -143,11 +139,10 @@ export default async function ProductPage({ params }: Props) {
                   </span>
                   <div>
                     <h2 className="font-bold text-slate-950 dark:text-white">
-                      Gift-ready packaging
+                      {messages.Product.packagingTitle}
                     </h2>
                     <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">
-                      Ships protected with care instructions, making it easy to
-                      give or keep for your own collection.
+                      {messages.Product.packagingText}
                     </p>
                   </div>
                 </div>
@@ -156,13 +151,12 @@ export default async function ProductPage({ params }: Props) {
               <div className="grid gap-3 sm:grid-cols-[1fr_auto]">
                 <AddToCartButton product={product} />
                 <button className="rounded-2xl border border-slate-300 bg-white px-6 py-4 text-base font-black text-slate-950 transition hover:-translate-y-0.5 hover:border-sky-300 hover:text-sky-700 focus:outline-none active:ring-4 active:ring-sky-100 dark:border-slate-600 dark:bg-slate-800 dark:text-white dark:hover:border-sky-400 dark:hover:text-sky-400 dark:active:ring-sky-900">
-                  Save for Later
+                  {messages.Product.saveForLater}
                 </button>
               </div>
 
               <p className="text-center text-sm font-medium text-slate-500 sm:text-left dark:text-slate-400">
-                Secure checkout • Made in small batches • Ships in 2-4 business
-                days
+                {messages.Product.secureCheckout}
               </p>
             </div>
           </div>
@@ -173,10 +167,10 @@ export default async function ProductPage({ params }: Props) {
             <div className="mb-4 flex items-end justify-between gap-4">
               <div>
                 <p className="text-sm font-bold uppercase tracking-[0.2em] text-sky-700 dark:text-sky-400">
-                  You may also like
+                  {messages.Product.youMayAlsoLike}
                 </p>
                 <h2 className="mt-1 text-2xl font-black text-slate-950 dark:text-white">
-                  More {product.brand} designs
+                  {messages.Product.moreDesigns.replace("{brand}", product.brand)}
                 </h2>
               </div>
             </div>
@@ -185,7 +179,7 @@ export default async function ProductPage({ params }: Props) {
                 <article
                   key={item.product_id}
                   className="overflow-hidden rounded-3xl border border-white/80 bg-white/80 shadow-lg shadow-slate-300/30 dark:border-slate-700/80 dark:bg-slate-800/80 dark:shadow-slate-900/30">
-                  <Link href={`/products/${item.product_id}`}>
+                  <Link href={`/${locale}/products/${item.product_id}`}>
                     <div className="relative aspect-4/3 bg-slate-100 dark:bg-slate-700">
                       <Image
                         src={item.image_url}
@@ -210,7 +204,7 @@ export default async function ProductPage({ params }: Props) {
           </section>
         )}
       </main>
-      <Comments />
+      <Comments messages={messages.Comments} />
     </>
   );
 }

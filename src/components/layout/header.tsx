@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { menuItems } from "@/lib/data";
-import HamburgerMenu from "@/components/shared/hamburgerMenu";
-import SearchBar from "../shared/searchbar";
-import CartIcon from "../shared/cartIcon";
+import HamburgerMenu from "@/components/features/hamburgerMenu";
+import SearchBar from "../features/searchbar";
+import CartIcon from "../features/cartIcon";
 import ThemeToggle from "@/components/features/themeToggle";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 bg-white/75 shadow-md shadow-blackbackdrop-blur-xl supports-backdrop-filter:bg-white/90 dark:bg-slate-900/75">
+    <header className="sticky top-0 z-50 bg-white/75 shadow-md shadow-black backdrop-blur-xl supports-backdrop-filter:bg-white/90 dark:bg-slate-900/75">
       <div className="mx-auto flex min-h-16 w-full max-w-7xl items-center gap-3 px-3 py-3 sm:px-5 lg:px-8">
         <div className="flex shrink-0 items-center justify-end gap-2 sm:gap-4">
           <HamburgerMenu />

@@ -1,6 +1,6 @@
 import { getProducts } from "@/api/axiosConfig";
 import CardContent from "@/components/shared/card";
-import Pagination from "@/components/shared/pagination";
+import Pagination from "@/components/features/pagination";
 import { product_type } from "@/lib/types";
 
 const ITEMS_PER_PAGE = 20;

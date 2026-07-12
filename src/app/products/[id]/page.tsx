@@ -4,8 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import AddToCartButton from "@/components/features/addToCart";
+import type { Metadata } from "next";
 
-const Comments = dynamic(() => import("@/components/features/comments"), {
+type Props = {
+  params: Promise<{ id: string }>;
+};
+
+const Comments = dynamic(() => import("@/components/shared/comments"), {
   loading: () => (
     <div className="animate-pulse p-4 text-center text-slate-500">
       Loading comments...
@@ -13,9 +18,36 @@ const Comments = dynamic(() => import("@/components/features/comments"), {
   ),
 });
 
-type Props = {
-  params: Promise<{ id: string }>;
-};
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+
+  const product = await getProductById(id);
+
+  if (!product) {
+    return {
+      title: "Product Not Found",
+    };
+  }
+
+  return {
+    title: product.title,
+
+    description: `${product.brand} - $${product.price}`,
+
+    openGraph: {
+      title: product.title,
+      description: `${product.brand} - $${product.price}`,
+      images: [
+        {
+          url: product.image_url,
+          width: 1200,
+          height: 630,
+          alt: product.title,
+        },
+      ],
+    },
+  };
+}
 
 export default async function ProductPage({ params }: Props) {
   const { id } = await params;

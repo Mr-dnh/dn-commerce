@@ -22,7 +22,7 @@ export default function CardContent({ product }: CardContentProps) {
       <article
         key={product.product_id}
         className="flex flex-col group overflow-hidden rounded-2xl bg-white shadow-xl shadow-slate-900/10 ring-1 ring-slate-900/5 dark:bg-slate-700 dark:shadow-slate-900/30 dark:ring-slate-600">
-        <Link href={`products/${product.product_id}`}>
+        <Link href={`/products/${product.product_id}`}>
           <div className="relative aspect-4/3 overflow-hidden bg-slate-200 dark:bg-slate-600">
             <Image
               src={product.image_url}
@@ -50,7 +50,7 @@ export default function CardContent({ product }: CardContentProps) {
               "Stylish and high-quality product from ASOS collection."}
           </p>
           <Link
-            href={`products/${product.product_id}`}
+            href={`/products/${product.product_id}`}
             className="text-center mt-auto w-full rounded-full bg-slate-900 px-4 py-3 text-sm font-bold text-white transition hover:bg-slate-700 dark:bg-slate-600 dark:hover:bg-slate-500">
             More...
           </Link>

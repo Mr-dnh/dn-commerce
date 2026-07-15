@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const createNextIntlPlugin = require('next-intl/plugin');
+
 const nextConfig = {
     images: {
         remotePatterns: [
@@ -14,5 +16,5 @@ const nextConfig = {
         scrollRestoration: false,
     },
 };
-
-module.exports = nextConfig;
+const withNextIntl = createNextIntlPlugin('./src/lib/i18n/request.ts');
+module.exports = withNextIntl(nextConfig);

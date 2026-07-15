@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { NextIntlClientProvider } from "next-intl";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { getMessages } from "@/lib/i18n/messages";
@@ -21,9 +22,11 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} dir={localeDirections[locale]} suppressHydrationWarning>
       <body>
-        <Header locale={locale} messages={messages.Header} />
-        {children}
-        <Footer locale={locale} messages={messages.Footer} />
+        <NextIntlClientProvider messages={messages} locale={locale}>
+          <Header locale={locale} messages={messages.Header} />
+          {children}
+          <Footer locale={locale} messages={messages.Footer} />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

@@ -55,7 +55,7 @@ export default function AddToCartButton({ product }: AddToCartButtonProps) {
     <div className="flex items-center justify-between rounded-2xl bg-slate-950 px-3 py-2 text-white shadow-xl dark:bg-slate-100 dark:text-slate-900">
       <button
         onClick={handleDecrease}
-        className="duration-200 flex h-10 w-10 items-center justify-center rounded-full hover:bg-white/20 dark:hover:bg-slate-300">
+        className="duration-200 flex h-10 w-10 items-center justify-center rounded-full hover:bg-white/20 dark:hover:bg-slate-300 focus:bg-white/20 dark:focus:bg-slate-300">
         −
       </button>
 
@@ -63,7 +63,7 @@ export default function AddToCartButton({ product }: AddToCartButtonProps) {
 
       <button
         onClick={handleIncrease}
-        className="duration-200 flex h-10 w-10 items-center justify-center rounded-full hover:bg-white/20 dark:hover:bg-slate-300">
+        className="duration-200 flex h-10 w-10 items-center justify-center rounded-full hover:bg-white/20 dark:hover:bg-slate-300 focus:bg-white/20 dark:focus:bg-slate-300">
         +
       </button>
     </div>

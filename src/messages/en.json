@@ -12,6 +12,13 @@
     "menu": "Menu",
     "language": "Language"
   },
+  "SettingsMenu": {
+    "ariaLabel": "Settings",
+    "theme": "Theme",
+    "lightMode": "Light Mode",
+    "darkMode": "Dark Mode",
+    "language": "Language"
+  },
   "Footer": {
     "description": "A polished ecommerce experience for discovering curated products, seasonal deals, and everyday essentials.",
     "rights": "© 2026 Aidin Commerce. All rights reserved.",

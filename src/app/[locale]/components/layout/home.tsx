@@ -1,12 +1,12 @@
 import { getProducts } from "@/api/axiosConfig";
-import CardContent from "@/components/shared/card";
+import CardContent from "@/app/[locale]/components/shared/card";
 import Link from "next/link";
-
+import { getTranslations } from "next-intl/server";
 import type { Locale } from "@/lib/i18n/config";
-import type { Messages } from "@/lib/i18n/messages";
 
-export default async function Home({ locale, messages, cardMessages }: { locale: Locale; messages: Messages["Home"]; cardMessages: Messages["Card"] }) {
-  // دیتا رو از سرور میگیریم
+export default async function Home({ locale }: { locale: Locale }) {
+  const t = await getTranslations({ locale, namespace: "Home" });
+
   const allProducts = await getProducts();
   const featuredProducts = allProducts.slice(0, 8);
 
@@ -17,30 +17,30 @@ export default async function Home({ locale, messages, cardMessages }: { locale:
         <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1fr_0.9fr]">
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.3em] text-slate-300 dark:text-slate-400">
-              {messages.eyebrow}
+              {t("eyebrow")}
             </p>
             <h1 className="mt-4 max-w-3xl text-5xl font-black tracking-tight sm:text-7xl">
-              {messages.title}
+              {t("title")}
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200 dark:text-slate-300">
-              {messages.description}
+              {t("description")}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href="#products"
                 className="rounded-full bg-white px-6 py-3 text-sm font-bold text-slate-950 transition hover:bg-slate-200 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-700">
-                {messages.shopProducts}
+                {t("shopProducts")}
               </a>
               <a
                 href="#comments"
                 className="rounded-full border border-white/30 px-6 py-3 text-sm font-bold text-white transition hover:bg-white/10 dark:border-white/20 dark:hover:bg-white/5">
-                {messages.readComments}
+                {t("readComments")}
               </a>
             </div>
           </div>
 
-          <div className=" hidden sm:block text-center text-8xl dark:text-white">
-            {messages.logo}
+          <div className="hidden sm:block text-center text-8xl dark:text-white">
+            {t("logo")}
           </div>
         </div>
       </section>
@@ -51,32 +51,37 @@ export default async function Home({ locale, messages, cardMessages }: { locale:
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.3em] text-slate-200 dark:text-slate-400">
-              {messages.featuredEyebrow}
+              {t("featuredEyebrow")}
             </p>
             <h2 className="mt-2 text-4xl font-black tracking-tight text-white dark:text-white">
-              {messages.featuredTitle}
+              {t("featuredTitle")}
             </h2>
           </div>
           <Link
             href={`/${locale}/products`}
             className="text-sm font-bold text-white hover:bg-slate-600 transition rounded-full px-3 py-2 dark:hover:bg-slate-700">
-            {messages.viewAll}
+            {t("viewAll")}
           </Link>
         </div>
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {featuredProducts.map((product) => (
-            <CardContent key={product.product_id} product={product} locale={locale} messages={cardMessages} />
+            <CardContent
+              key={product.product_id}
+              product={product}
+              locale={locale}
+            />
           ))}
         </div>
+
         <div className="mt-7 grid sm:grid-cols-[2fr_1fr] items-center justify-items-center">
           <span className="hidden sm:block text-sm dark:text-slate-300">
-            {messages.morePrompt}
+            {t("morePrompt")}
           </span>
           <Link
             href={`/${locale}/products`}
             className="font-bold text-lg text-white hover:bg-slate-600 transition rounded-full px-3 py-2 dark:hover:bg-slate-700">
-            {messages.viewAll}
+            {t("viewAll")}
           </Link>
         </div>
       </section>

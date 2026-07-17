@@ -6,13 +6,15 @@ import { CarouselProps } from "@/lib/types";
 import { normalizePictures } from "./normalize";
 import { NavigationButtons, Dots } from "./navigation";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 function EmptyState({ className }: { className?: string }) {
+  const t = useTranslations("Carousel");
   return (
     <section
       className={`flex min-h-72 items-center justify-center rounded-4xl bg-slate-50 p-8 text-sm font-medium text-slate-500 ${className}`}
       aria-label="Empty carousel">
-      Add pictures to the carousel to display slides.
+      {t("emptyState")}
     </section>
   );
 }

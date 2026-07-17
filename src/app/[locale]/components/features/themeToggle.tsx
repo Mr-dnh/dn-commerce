@@ -1,14 +1,16 @@
 "use client";
 
 import { useThemeStore } from "@/store/themeStore";
-import { useEffect, useSyncExternalStore } from "react";
+import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 export default function ThemeToggle() {
   const { theme, toggleTheme } = useThemeStore();
-  const mounted = useSyncExternalStore(() => () => {}, () => true, () => false);
+  const [mounted, setMounted] = useState(false);
+  const t = useTranslations("Common");
 
-  // hydration mismatch
   useEffect(() => {
+    setMounted(true);
     document.documentElement.className = theme;
   }, [theme]);
 
@@ -16,7 +18,7 @@ export default function ThemeToggle() {
     return (
       <button
         className="rounded-full border border-slate-200 bg-white/80 p-2 text-slate-700 transition hover:bg-slate-100 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-slate-900/20"
-        aria-label="Toggle theme">
+        aria-label={t("toggleTheme")}>
         <svg
           className="size-5"
           fill="none"
@@ -35,17 +37,20 @@ export default function ThemeToggle() {
 
   return (
     <button
-      onClick={toggleTheme}
+      onClick={() => {
+        toggleTheme();
+        document.documentElement.className =
+          theme === "light" ? "dark" : "light";
+      }}
       className="rounded-full border border-slate-200 bg-white/80 p-2 transition hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-900/20 dark:border-slate-700 dark:bg-slate-800/80 dark:hover:bg-slate-700"
-      aria-label="Toggle theme">
+      aria-label={t("toggleTheme")}>
       {theme === "light" ? (
         <svg
           className="size-5"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
-          style={{ color: "#0f172a" }} // slate-900
-        >
+          style={{ color: "#0f172a" }}>
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -59,8 +64,7 @@ export default function ThemeToggle() {
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
-          style={{ color: "#facc15" }} // yellow-400
-        >
+          style={{ color: "#facc15" }}>
           <path
             strokeLinecap="round"
             strokeLinejoin="round"

@@ -3,9 +3,10 @@
 import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { useThemeStore } from "@/store/themeStore";
+import { useTranslations } from "next-intl";
 
 interface SettingsMenuProps {
-  currentLocale: string; // ← از Header میاد
+  currentLocale: string;
 }
 
 export default function SettingsMenu({ currentLocale }: SettingsMenuProps) {
@@ -13,8 +14,8 @@ export default function SettingsMenu({ currentLocale }: SettingsMenuProps) {
   const pathname = usePathname();
   const { theme, toggleTheme } = useThemeStore();
   const [isOpen, setIsOpen] = useState(false);
+  const t = useTranslations("SettingsMenu");
 
-  // بستن منو با کلیک خارج از آن
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
@@ -36,11 +37,10 @@ export default function SettingsMenu({ currentLocale }: SettingsMenuProps) {
 
   return (
     <div className="settings-menu relative">
-      {/* دکمه تنظیمات */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="rounded-full border border-slate-200 bg-white/80 p-2 text-slate-700 transition hover:bg-slate-100 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-slate-900/20 dark:border-slate-700 dark:bg-slate-800/80 dark:text-slate-200 dark:hover:bg-slate-700"
-        aria-label="Settings">
+        aria-label={t("ariaLabel")}>
         <svg
           className="size-5"
           fill="none"
@@ -61,16 +61,17 @@ export default function SettingsMenu({ currentLocale }: SettingsMenuProps) {
         </svg>
       </button>
 
-      {/* منوی کشویی */}
       {isOpen && (
-        <div className="absolute right-0 top-12 z-50 w-48 rounded-2xl border border-slate-200 bg-white shadow-xl shadow-slate-900/10 backdrop-blur dark:border-slate-700 dark:bg-slate-900 dark:shadow-slate-900/30">
+        <div className="absolute inset-e-0 top-12 z-50 w-48 rounded-2xl border border-slate-200 bg-white shadow-xl shadow-slate-900/10 backdrop-blur dark:border-slate-700 dark:bg-slate-900 dark:shadow-slate-900/30">
           <div className="p-2 space-y-1">
             <p className="px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
-              Theme
+              {t("theme")}
             </p>
             <button
               onClick={() => {
                 toggleTheme();
+                const newTheme = theme === "light" ? "dark" : "light";
+                document.documentElement.className = newTheme;
                 setIsOpen(false);
               }}
               className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-sm text-slate-700 transition hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800">
@@ -88,7 +89,7 @@ export default function SettingsMenu({ currentLocale }: SettingsMenuProps) {
                       d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
                     />
                   </svg>
-                  Light Mode
+                  {t("lightMode")}
                 </>
               ) : (
                 <>
@@ -104,7 +105,7 @@ export default function SettingsMenu({ currentLocale }: SettingsMenuProps) {
                       d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
                     />
                   </svg>
-                  Dark Mode
+                  {t("darkMode")}
                 </>
               )}
             </button>
@@ -112,7 +113,7 @@ export default function SettingsMenu({ currentLocale }: SettingsMenuProps) {
             <div className="my-1 border-t border-slate-200 dark:border-slate-700" />
 
             <p className="px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
-              Language
+              {t("language")}
             </p>
             <button
               onClick={() => switchLanguage("en")}

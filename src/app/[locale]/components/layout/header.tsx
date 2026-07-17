@@ -1,32 +1,24 @@
 import Link from "next/link";
 import { menuItems } from "@/lib/data";
-import HamburgerMenu from "@/components/features/hamburgerMenu";
+import HamburgerMenu from "@/app/[locale]/components/features/hamburgerMenu";
 import SearchBar from "../features/searchbar";
 import CartIcon from "../features/cartIcon";
-import SettingsMenu from "@/components/features/settingsMenu";
-
-import { localizeHref, type Locale } from "@/lib/i18n/config";
-import type { Messages } from "@/lib/i18n/messages";
+import SettingsMenu from "@/app/[locale]/components/features/settingsMenu";
+import { localizeHref } from "@/lib/i18n/config";
+import { useTranslations } from "next-intl";
 
 interface HeaderProps {
-  locale: string;
-  messages?: any;
+  locale: "en" | "fa";
 }
 
-type HeaderMessages = Messages["Header"];
+export default function Header({ locale }: HeaderProps) {
+  const t = useTranslations("Header");
 
-export default function Header({
-  locale,
-  messages,
-}: {
-  locale: Locale;
-  messages: HeaderMessages;
-}) {
   return (
     <header className="sticky top-0 z-50 bg-white/75 shadow-md shadow-black backdrop-blur-xl supports-backdrop-filter:bg-white/90 dark:bg-slate-900/75">
       <div className="mx-auto flex min-h-16 w-full max-w-7xl items-center gap-3 px-3 py-3 sm:px-5 lg:px-8">
         <div className="flex shrink-0 items-center justify-end gap-2 sm:gap-4">
-          <HamburgerMenu locale={locale} messages={messages} />
+          <HamburgerMenu locale={locale} />
           <Link
             href={`/${locale}`}
             className="whitespace-nowrap text-base font-black uppercase tracking-tight text-slate-950 sm:text-lg dark:text-white"
@@ -41,25 +33,21 @@ export default function Header({
                 key={item.key}
                 href={localizeHref(locale, item.href)}
                 className="rounded-full px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-slate-900/20 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white">
-                {messages[item.key]}
+                {t(item.key)}
               </Link>
             ))}
           </nav>
         </div>
-        <SearchBar
-          locale={locale}
-          label={messages.searchProducts}
-          placeholder={messages.search}
-        />
+        <SearchBar locale={locale} />
         <div
           className="flex shrink-0 items-center gap-2"
           aria-label="Account and cart">
-          <CartIcon locale={locale} label={messages.openCart} />
+          <CartIcon />
           <SettingsMenu currentLocale={locale} />
           <Link
             href="#account"
             className="relative inline-flex size-10 items-center justify-center rounded-full border border-slate-200 bg-white/80 text-slate-700 transition hover:bg-slate-100 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-slate-900/20 dark:border-slate-700 dark:bg-slate-800/80 dark:text-slate-200 dark:hover:bg-slate-700 dark:hover:text-white"
-            aria-label={messages.openAccount}>
+            aria-label={t("openAccount")}>
             <svg
               aria-hidden="true"
               className="size-5"

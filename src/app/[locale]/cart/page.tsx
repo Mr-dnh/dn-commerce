@@ -3,14 +3,9 @@
 import { useCartStore } from "@/store/cartStore";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams } from "next/navigation";
-import en from "@/messages/en.json";
-import fa from "@/messages/fa.json";
-import { isLocale, type Locale } from "@/lib/i18n/config";
+import { useTranslations } from "next-intl";
 
-const getLocaleMessages = (locale: Locale) => (locale === "fa" ? fa : en);
-
-const formatPrice = (price: string, locale: Locale) => {
+const formatPrice = (price: string, locale: string) => {
   const numPrice = parseFloat(price.replace(/[^0-9.]/g, ""));
   return new Intl.NumberFormat(locale === "fa" ? "fa-IR" : "en-US", {
     style: "currency",
@@ -20,9 +15,7 @@ const formatPrice = (price: string, locale: Locale) => {
 };
 
 export default function CartPage() {
-  const params = useParams<{ locale: string }>();
-  const locale = isLocale(params.locale) ? params.locale : "en";
-  const messages = getLocaleMessages(locale).Cart;
+  const t = useTranslations("Cart");
   const {
     items,
     removeItem,
@@ -38,16 +31,16 @@ export default function CartPage() {
       <main className="min-h-screen bg-slate-500 py-16 dark:bg-slate-950">
         <div className="container mx-auto max-w-4xl px-4 text-center">
           <h1 className="text-3xl font-bold text-slate-900 dark:text-white">
-            {messages.title}
+            {t("title")}
           </h1>
           <div className="mt-8 rounded-2xl bg-white p-12 shadow-lg dark:bg-slate-800 dark:shadow-slate-900/30">
             <p className="text-lg text-slate-600 dark:text-slate-300">
-              {messages.empty}
+              {t("empty")}
             </p>
             <Link
-              href={`/${locale}/products`}
+              href={`/products`}
               className="mt-4 inline-block rounded-full bg-slate-900 px-6 py-3 text-sm font-bold text-white transition hover:bg-slate-700 dark:bg-slate-700 dark:hover:bg-slate-600">
-              {messages.startShopping}
+              {t("startShopping")}
             </Link>
           </div>
         </div>
@@ -59,7 +52,7 @@ export default function CartPage() {
     <main className="min-h-screen bg-slate-300 py-16 dark:bg-slate-950">
       <div className="container mx-auto max-w-4xl px-4">
         <h1 className="text-3xl font-bold text-center text-slate-900 dark:text-white">
-          {messages.title}
+          {t("title")}
         </h1>
 
         <div className="mt-8 space-y-4">
@@ -67,7 +60,7 @@ export default function CartPage() {
             <div
               key={item.product_id}
               className="flex items-center gap-4 rounded-2xl bg-white p-4 shadow-lg dark:bg-slate-800 dark:shadow-slate-900/30">
-              <Link href={`/${locale}/products/${item.product_id}`}>
+              <Link href={`/products/${item.product_id}`}>
                 <div className="relative size-20 overflow-hidden rounded-lg bg-slate-100 dark:bg-slate-700">
                   <Image
                     src={item.image_url}
@@ -79,7 +72,7 @@ export default function CartPage() {
               </Link>
 
               <div className="flex-1">
-                <Link href={`/${locale}/products/${item.product_id}`}>
+                <Link href={`/products/${item.product_id}`}>
                   <h3 className="font-bold text-slate-900 hover:underline line-clamp-2 dark:text-white">
                     {item.title}
                   </h3>
@@ -88,7 +81,7 @@ export default function CartPage() {
                   {item.brand}
                 </p>
                 <p className="font-bold text-slate-900 dark:text-white">
-                  {formatPrice(item.price, locale)}
+                  {formatPrice(item.price, "en")}
                 </p>
               </div>
 
@@ -115,7 +108,7 @@ export default function CartPage() {
               <button
                 onClick={() => removeItem(item.product_id)}
                 className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
-                aria-label={messages.removeItem}>
+                aria-label={t("removeItem")}>
                 <svg
                   className="size-5"
                   fill="none"
@@ -136,10 +129,10 @@ export default function CartPage() {
         <div className="mt-8 rounded-2xl bg-white p-6 shadow-lg dark:bg-slate-800 dark:shadow-slate-900/30">
           <div className="flex items-center justify-between">
             <span className="text-lg font-bold text-slate-900 underline dark:text-white">
-              {messages.itemsToShip.replace("{count}", String(getTotalItems())).replace("{plural}", getTotalItems() > 1 ? "s" : "")}
+              {t("itemsToShip", { count: getTotalItems() })}
             </span>
             <span className="text-2xl font-black text-slate-900 dark:text-white">
-              {messages.total.replace("{price}", formatPrice(totalPrice.toString(), locale))}
+              {t("total", { price: formatPrice(totalPrice.toString(), "en") })}
             </span>
           </div>
 
@@ -147,10 +140,10 @@ export default function CartPage() {
             <button
               onClick={clearCart}
               className="flex-1 rounded-full border border-red-300 px-6 py-3 font-bold text-red-500 transition hover:bg-red-50 dark:border-red-700 dark:text-red-400 dark:hover:bg-red-900/30">
-              {messages.clear}
+              {t("clear")}
             </button>
             <button className="flex-1 rounded-full bg-slate-900 px-6 py-3 font-bold text-white transition hover:bg-slate-700 dark:bg-slate-700 dark:hover:bg-slate-600">
-              {messages.checkout}
+              {t("checkout")}
             </button>
           </div>
         </div>

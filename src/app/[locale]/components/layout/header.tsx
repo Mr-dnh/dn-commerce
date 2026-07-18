@@ -5,14 +5,14 @@ import SearchBar from "../features/searchbar";
 import CartIcon from "../features/cartIcon";
 import SettingsMenu from "@/app/[locale]/components/features/settingsMenu";
 import { localizeHref } from "@/lib/i18n/config";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 interface HeaderProps {
   locale: "en" | "fa";
 }
 
-export default function Header({ locale }: HeaderProps) {
-  const t = useTranslations("Header");
+export default async function Header({ locale }: HeaderProps) {
+  const t = await getTranslations({ locale, namespace: "Header" });
 
   return (
     <header className="sticky top-0 z-50 bg-white/75 shadow-md shadow-black backdrop-blur-xl supports-backdrop-filter:bg-white/90 dark:bg-slate-900/75">

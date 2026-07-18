@@ -1,10 +1,8 @@
-"use client";
-
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { comments } from "@/lib/data";
 
-export default function Comments() {
-  const t = useTranslations("Comments");
+export default async function Comments({ locale }: { locale: string }) {
+  const t = await getTranslations({ locale, namespace: "Comments" });
 
   return (
     <section

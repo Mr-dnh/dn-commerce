@@ -1,12 +1,11 @@
 import { getRequestConfig } from 'next-intl/server';
-import { cookies } from 'next/headers';
 
-export default getRequestConfig(async () => {
-  const cookieStore = await cookies();
-  const locale = cookieStore.get('locale')?.value || 'en';
+export default getRequestConfig(async ({ requestLocale }) => {
+  // `requestLocale` از URL میاد (مثل /fa یا /en)
+  const locale = await requestLocale || 'en';
 
   return {
     locale,
-    messages: (await import(`@/messages/${locale}.json`)).default
+    messages: (await import(`@/messages/${locale}.json`)).default,
   };
 });

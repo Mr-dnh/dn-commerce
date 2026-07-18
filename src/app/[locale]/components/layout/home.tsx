@@ -6,7 +6,6 @@ import type { Locale } from "@/lib/i18n/config";
 
 export default async function Home({ locale }: { locale: Locale }) {
   const t = await getTranslations({ locale, namespace: "Home" });
-
   const allProducts = await getProducts();
   const featuredProducts = allProducts.slice(0, 8);
 

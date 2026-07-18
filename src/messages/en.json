@@ -87,7 +87,7 @@
     "empty": "Your cart is empty",
     "startShopping": "Start Shopping",
     "removeItem": "Remove item",
-    "itemsToShip": "{count} item{plural} to ship",
+    "itemsToShip": "{count} item{count, plural, =1 {} other {s}} to ship",
     "total": "Total: {price}",
     "clear": "Clear Cart",
     "checkout": "Checkout →"

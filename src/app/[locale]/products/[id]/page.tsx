@@ -47,7 +47,6 @@ export default async function ProductPage({ params }: Props) {
   if (!isLocale(locale)) notFound();
 
   const t = await getTranslations({ locale, namespace: "Product" });
-  const commentsT = await getTranslations({ locale, namespace: "Comments" });
 
   const product = await getProductById(id);
   const allProducts = await getProducts();
@@ -207,7 +206,7 @@ export default async function ProductPage({ params }: Props) {
           </section>
         )}
       </main>
-      <Comments />
+      <Comments locale={locale} />
     </>
   );
 }

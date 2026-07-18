@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { footerSections } from "@/lib/data";
 import { localizeHref, type Locale } from "@/lib/i18n/config";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-export default function Footer({ locale }: { locale: Locale }) {
-  const t = useTranslations("Footer");
+export default async function Footer({ locale }: { locale: Locale }) {
+  const t = await getTranslations({ locale, namespace: "Footer" });
 
   return (
     <footer className="bg-slate-900 text-white dark:bg-slate-950">

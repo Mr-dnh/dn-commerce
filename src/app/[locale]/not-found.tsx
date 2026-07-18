@@ -1,8 +1,14 @@
 import Link from "next/link";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
 export default async function NotFound() {
-  const t = await getTranslations("Common");
+  const locale = await getLocale();
+  console.log(locale);
+
+  const t = await getTranslations({
+    locale,
+    namespace: "Common",
+  });
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-slate-100 dark:bg-slate-900">
@@ -16,7 +22,7 @@ export default async function NotFound() {
         </p>
 
         <Link
-          href="/"
+          href={`/${locale}`}
           className="mt-6 inline-block rounded-full bg-slate-900 px-6 py-3 text-white transition hover:bg-slate-700">
           {t("backHome")}
         </Link>

@@ -14,13 +14,14 @@ export const useThemeStore = create<ThemeState>()(
     (set) => ({
       theme: 'light',
       toggleTheme: () =>
-        set((state) => ({
-          theme: state.theme === 'light' ? 'dark' : 'light',
-        })),
+        set((state) => {
+    const newTheme = state.theme === 'light' ? 'dark' : 'light';
+    return { theme: newTheme };
+  }),
       setTheme: (theme) => set({ theme }),
     }),
     {
-      name: 'theme-storage', // کلید توی localStorage
+      name: 'theme-storage',
     }
   )
 );

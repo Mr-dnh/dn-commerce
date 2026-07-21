@@ -11,14 +11,14 @@ export default async function Home({ locale }: { locale: Locale }) {
 
   return (
     <main className="bg-slate-500 text-slate-950 dark:bg-slate-800 dark:text-white">
-      <section className="relative isolate overflow-hidden bg-slate-900 px-4 py-20 text-white sm:px-6 lg:px-8">
+      <section className="relative min-h-dvh isolate overflow-hidden bg-slate-900 px-4 py-20 text-white sm:px-6 lg:px-8">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.22),transparent_34%),linear-gradient(135deg,rgba(15,23,42,0.96),rgba(71,85,105,0.9))]" />
         <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1fr_0.9fr]">
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.3em] text-slate-300 dark:text-slate-400">
               {t("eyebrow")}
             </p>
-            <h1 className="mt-4 max-w-3xl text-5xl font-black tracking-tight sm:text-7xl">
+            <h1 className="mt-4 leading-20 max-w-3xl text-6xl font-black tracking-tight sm:text-7xl">
               {t("title")}
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200 dark:text-slate-300">
@@ -63,7 +63,7 @@ export default async function Home({ locale }: { locale: Locale }) {
           </Link>
         </div>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
           {featuredProducts.map((product) => (
             <CardContent
               key={product.product_id}

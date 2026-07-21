@@ -36,4 +36,5 @@ export const comments = [
   { name: "Sara M.", text: "The custom finish looks even better in person. My Nazanin piece became the centerpiece of my shelf." },
   { name: "Jon R.", text: "Fast delivery, solid balance, and the Batmani design has exactly the bold style I wanted." },
   { name: "Mina K.", text: "I bought a starter piece as a gift and came back for a custom model the next week." },
+  { name: "حسینعلی", text: "همین دیروز به دستم رسیدن. خیلی قشنگه" },
 ];

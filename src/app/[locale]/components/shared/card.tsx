@@ -43,7 +43,7 @@ export default function CardContent({ product, locale }: CardContentProps) {
         </Link>
         <div className="flex flex-1 flex-col p-5 gap-5">
           <div className="flex items-start justify-between">
-            <h3 className="text-xl font-black tracking-tight text-slate-950 line-clamp-2 dark:text-white">
+            <h3 className="text-sm sm:text-xl font-black tracking-tight text-slate-950 line-clamp-2 dark:text-white">
               {product.title}
             </h3>
             <p className="rounded-full bg-slate-100 px-3 py-1 text-sm font-black text-slate-900 whitespace-nowrap dark:bg-slate-700 dark:text-white">

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
-
+import localFont from "next/font/local";
 import "@/app/global.css";
 
 import Header from "@/app/[locale]/components/layout/header";
@@ -42,6 +42,19 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
+const vazir = localFont({
+  src: [
+    {
+      path: "../../fonts/Vazirmatn[wght].ttf",
+      weight: "100 900", // محدوده وزن‌ها در نسخه variable
+      style: "normal",
+    },
+  ],
+  variable: "--font-vazir",
+  display: "swap",
+  fallback: ["system-ui", "sans-serif"],
+});
+
 export default async function RootLayout({ children, params }: Props) {
   const { locale } = await params;
 
@@ -50,9 +63,17 @@ export default async function RootLayout({ children, params }: Props) {
   }
 
   const messages = await getMessages(locale);
+  const isRTL = locale === "fa";
 
   return (
-    <html lang={locale} dir={localeDirections[locale]} suppressHydrationWarning>
+    <html
+      lang={locale}
+      dir={localeDirections[locale]}
+      suppressHydrationWarning
+      className={vazir.variable}>
+      <head>
+        <meta name="apple-mobile-web-app-title" content="MyWebSite" />
+      </head>
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Header locale={locale} />

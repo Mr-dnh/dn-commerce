@@ -19,7 +19,7 @@ export default async function Footer({ locale }: { locale: Locale }) {
           <p className="mt-4 max-w-md text-sm text-slate-300 dark:text-slate-400">
             {t("description")}
           </p>
-          <p className="mt-6 text-xs text-slate-500 dark:text-slate-600">
+          <p className="mt-6 text-xs text-slate-400 dark:text-slate-600">
             {t("rights")}
           </p>
         </div>

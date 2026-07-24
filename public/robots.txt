@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://dn-commerce.vercel.app/sitemap.xml

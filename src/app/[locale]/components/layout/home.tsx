@@ -49,7 +49,7 @@ export default async function Home({ locale }: { locale: Locale }) {
         className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-sm font-bold uppercase tracking-[0.3em] text-slate-200 dark:text-slate-400">
+            <p className="text-sm font-bold uppercase tracking-[0.3em] text-slate-300 dark:text-slate-400">
               {t("featuredEyebrow")}
             </p>
             <h2 className="mt-2 text-4xl font-black tracking-tight text-white dark:text-white">
